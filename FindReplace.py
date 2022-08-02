@@ -23,7 +23,7 @@ def guided_creation(oldFilename: str = "", replaceKeysFilename: str = ""):
 | $$  \ $$| $$      | $$      | $$      | $$  | $$| $$    $$| $$ \n\
 | $$  | $$| $$$$$$$$| $$      | $$$$$$$$| $$  | $$|  $$$$$$/| $$$$$$$$ \n\
 |__/  |__/|________/|__/      |________/|__/  |__/ \______/ |________/\n\n\
-                        BY: DAVID ALFANO   v1.0\n",fg=typer.colors.CYAN))                                                                        
+                        BY: DAVID ALFANO   v1.1\n",fg=typer.colors.CYAN))                                                                        
                                                                                                                                                      
     typer.echo(typer.style("This program will guide you through the process of updating NAV XML files to use new device references.\n",fg=typer.colors.GREEN, bold=True))
     typer.echo(typer.style("To use, you will enter the filename you wish to update and csv filename with the keys to replace desired elements.\n\n",fg=typer.colors.GREEN, bold=True))
@@ -66,6 +66,7 @@ def generateXML(oldFilename,replaceKeysFilename,newFilename):
         for row in replaceKeys:
             oldXML = oldXML.replace(f"\"{row['oldProcessID']}\"",f"\"{row['newProcessID']}\"")
             oldXML = oldXML.replace(f":{row['oldProcessID']}:",f":{row['newProcessID']}:")
+            oldXML = oldXML.replace(f"Device={row['oldProcessID']}\"",f"Device={row['newProcessID']}\"")
         newFile.write(oldXML)
    
 
